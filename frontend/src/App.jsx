@@ -1,16 +1,18 @@
-import React from "react";
-import Navbar from "./assets/components/Navbar";
-import Footer from "./assets/components/Footer";
 import { Outlet } from "react-router-dom";
+import Navbar from "./assets/components/Navbar";
+import { useState } from "react";
+import React from "react"
+function App() {
+  // Shared state here
+  const [students, setStudents] = useState([]);
 
-export default function App() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div>
       <Navbar />
-      <main className="flex-grow p-6">
-        <Outlet /> {/* 👈 Child pages will render here */}
-      </main>
-      <Footer />
+      {/* Pass students + setStudents to all children */}
+      <Outlet context={{ students, setStudents }} />
     </div>
   );
 }
+
+export default App;
